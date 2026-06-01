@@ -80,9 +80,19 @@ All screenshots are embedded as **Section 5: Evidence Screenshots** in `Task1_QA
 
 ## How to Run the n8n Workflows
 
+This repository does not contain a runnable web app. It contains workflow exports, QA evidence, and documentation. If you already have Docker installed, use it to run n8n locally.
+
 ### Prerequisites
-- n8n (Docker): `docker run -it --rm --name n8n -p 5678:5678 n8nio/n8n`
-- Or n8n Cloud free trial
+- Docker Desktop or Docker Engine
+- n8n running locally or in n8n Cloud
+
+### Start n8n with Docker
+```bash
+docker volume create n8n_data
+docker run -it --name n8n -p 5678:5678 -v n8n_data:/home/node/.n8n n8nio/n8n
+```
+
+If you want the container to remove itself after stopping, you can use `--rm` instead of the persistent volume setup above, but your workflows and credentials will not be saved between runs.
 
 ### Import Steps
 1. Open n8n at `http://localhost:5678`
