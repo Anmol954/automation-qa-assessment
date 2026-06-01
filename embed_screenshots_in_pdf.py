@@ -11,43 +11,36 @@ import os
 import fitz  # PyMuPDF
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-PDF_PATH   = os.path.join(SCRIPT_DIR, "Task1_QA_Report_AnmolMadhav.pdf")
+PDF_PATH   = os.path.join(SCRIPT_DIR, "Task1_QA_Report.pdf")
 
 # Screenshot manifest
 SCREENSHOTS = [
     ("realworld_home.png",
-     "Home Page - Conduit (demo.realworld.show) loaded successfully"),
+    "realworld_home.png - Conduit home page"),
     ("realworld_logged_in.png",
-     "Logged-in State - testuser_qa_2025 authenticated, nav shows username"),
+    "realworld_logged_in.png - Logged-in state with username shown"),
     ("realworld_article_created.png",
-     "Bug #1 context - Article page with Edit/Delete controls visible for owner"),
+    "realworld_article_created.png - Article page with Edit/Delete controls visible"),
     ("realworld_failed_update_no_error.png",
-     "Bug #1 - Silent 422 on article update: server returns error text inline "
-     "but no styled user-facing error alert is shown"),
+    "realworld_failed_update_no_error.png - Failed article update with silent 422"),
     ("realworld_login_error.png",
-     "Bug #5 - Login error: plain bullet 'credentials invalid' with no "
-     "color/icon emphasis (poor UX)"),
+    "realworld_login_error.png - Login error message with poor UX styling"),
     ("realworld_profile.png",
-     "User Profile - testuser_qa_2025 profile page with My Posts tab"),
+    "realworld_profile.png - User profile page"),
     ("realworld_weak_password.png",
-     "Bug #2 - Single-character password '1' accepted: account created "
-     "successfully despite trivially weak password"),
+    "realworld_weak_password.png - Weak password accepted during sign-up"),
     ("realworld_invalid_email.png",
-     "Bug #3 - 'notanemail' (no @ symbol) accepted: account registered "
-     "with malformed email, bypassing all validation"),
+    "realworld_invalid_email.png - Invalid email accepted during sign-up"),
     ("realworld_dup_user_first.png",
-     "Bug #4 - First registration with duplicate username succeeded (HTTP 201)"),
+    "realworld_dup_user_first.png - First duplicate-username registration succeeded"),
     ("realworld_dup_user_second.png",
-     "Bug #4 - Second account with same username but different email ALSO "
-     "succeeded - duplicate usernames allowed"),
+    "realworld_dup_user_second.png - Second duplicate-username registration also succeeded"),
     ("realworld_404_original.png",
-     "Bug #6 - demo.realworld.io returns 404 / NoSuchBucket (S3 bucket removed)"),
+    "realworld_404_original.png - demo.realworld.io returns 404 / NoSuchBucket"),
     ("realworld_comment_programmatic.png",
-     "Bug #7 - Comment text set programmatically; visible in textarea but "
-     "Angular model remains empty"),
+    "realworld_comment_programmatic.png - Comment text entered programmatically"),
     ("realworld_comment_no_post.png",
-     "Bug #7 - After clicking 'Post Comment', no API request fired and the "
-     "comment does not appear below the article"),
+    "realworld_comment_no_post.png - Post Comment click did not submit the comment"),
 ]
 
 # Colors (r, g, b) floats 0-1
