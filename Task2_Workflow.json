@@ -149,7 +149,7 @@
     },
     {
       "parameters": {
-        "fromEmail": "noreply@morningbrief.local",
+        "fromEmail": "noreply@example.com",
         "toEmail": "team@example.com",
         "subject": "=GitHub Trending Brief - {{ $json.topRepoName }} ({{ $json.topRepoStars }} stars)",
         "text": "={{ $json.digest }}",
@@ -166,7 +166,7 @@
       "credentials": {
         "smtp": {
           "id": "smtp-credentials-id",
-          "name": "SMTP account"
+          "name": "SMTP credential"
         }
       },
       "continueOnFail": true

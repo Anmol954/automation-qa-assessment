@@ -2,7 +2,7 @@
 
 ## Overview
 
-This n8n workflow watches the GitHub REST API for trending TypeScript repositories, enriches the top result by fetching its README, applies a conditional branch based on star count, and posts a digest to both email and Slack. It includes robust error handling to ensure no failure goes unnoticed.
+This workflow polls GitHub for recently created TypeScript repositories, keeps the top five by stars, enriches the leading repo with its README, and sends a short digest to the notification channel.
 
 ## APIs Used
 
@@ -23,8 +23,8 @@ This n8n workflow watches the GitHub REST API for trending TypeScript repositori
 6. **IF Stars > 100** - Conditional branch: if the top repo has more than 100 stars, it's flagged as a high-alert item
 7. **High Stars Message** / **Standard Message** - Branch-specific formatting (high-stars gets an urgent prefix)
 8. **Send Email Digest** - Emails the digest to the team
-9. **Slack Notification** - Also posts to a Slack channel via webhook (standard branch only, to avoid duplicate alerts)
-10. **Error Handler** + **Error to Slack** - If any HTTP request fails, the error is captured and posted to Slack with a warning emoji
+9. **Slack Notification** - Posts the standard digest to Slack via webhook
+10. **Error Handler** + **Error to Slack** - Captures API failures and forwards them to Slack with a warning message
 
 ## Transformation Logic
 
@@ -49,20 +49,18 @@ The threshold of 100 stars was chosen because it represents a repo that is gaini
 
 ## Error Handling
 
-- **Continue On Fail** is enabled on both HTTP Request nodes (GitHub Search and README Fetch)
-- If the GitHub Search fails, the Transform node detects empty data and returns an error object
-- If the README fetch fails, the digest still includes the repo list but shows "README not available"
-- A dedicated **Error Handler** Code node checks for errors from the HTTP nodes
-- Errors are forwarded to **Error to Slack** which posts a warning message to the same Slack channel
-- The workflow never crashes silently - all failures are logged or routed to a fallback
+- **Continue On Fail** is enabled on both HTTP Request nodes
+- If GitHub search fails, the transform node returns a small error payload instead of crashing
+- If README fetch fails, the digest still renders and shows "README not available"
+- A dedicated **Error Handler** Code node checks for errors and forwards them to Slack
 
 ## Credentials
 
-All credentials should be stored in n8n's Credentials store:
-- **SMTP account** - For sending email digests (configure with your SMTP provider)
-- **Slack Webhook URL** - Replace `YOUR/SLACK/WEBHOOK` in the Slack Notification and Error to Slack nodes with your actual Slack webhook URL
+Store secrets in n8n's Credentials store:
+- SMTP credentials for email delivery
+- Slack webhook URL for notifications
 
-**Do NOT hard-code secrets in the workflow JSON.** Reference credentials from n8n's built-in credential system.
+Do not hard-code secrets in the workflow JSON.
 
 ## Testing
 

@@ -1,5 +1,4 @@
 # Automation & QA Developer — Take-Home Assessment
-**Candidate:** Anmol Madhav | **Email:** anmolmadhav2004@gmail.com
 
 ---
 
@@ -8,7 +7,7 @@
 ### Task 1 — Web App QA & Debug Report
 | Item | File |
 |------|------|
-| QA Report PDF | [`Task1_QA_Report_AnmolMadhav.pdf`](./Task1_QA_Report_AnmolMadhav.pdf) |
+| QA Report PDF | [`Task1_QA_Report.pdf`](./Task1_QA_Report.pdf) |
 | App Tested | [Conduit (RealWorld Angular Demo)](https://demo.realworld.show) |
 | Bugs Found | **7 issues** — 2 Critical · 2 High · 3 Medium |
 | RCA Focus | Bug #1 — Silent 422 error on article update (Angular service layer gap) |
@@ -29,7 +28,7 @@
 ### Task 2 — n8n API Integration Workflow
 | Item | File |
 |------|------|
-| Workflow JSON | [`Task2_Workflow_AnmolMadhav.json`](./Task2_Workflow_AnmolMadhav.json) |
+| Workflow JSON | [`Task2_Workflow.json`](./Task2_Workflow.json) |
 | README | [`Task2_README.md`](./Task2_README.md) |
 
 **Workflow: GitHub Trending Morning Brief**
@@ -46,7 +45,7 @@
 ### Bonus — Uptime Monitor Workflow
 | Item | File |
 |------|------|
-| Workflow JSON | [`Bonus_UptimeMonitor_AnmolMadhav.json`](./Bonus_UptimeMonitor_AnmolMadhav.json) |
+| Workflow JSON | [`Bonus_UptimeMonitor.json`](./Bonus_UptimeMonitor.json) |
 
 **Features:**
 - Pings `https://demo.realworld.show` every 5 minutes
@@ -59,14 +58,23 @@
 ---
 
 ### Screenshots
-| Screenshot | Description |
-|------------|-------------|
-| [`realworld_home.png`](./realworld_home.png) | Conduit home page |
-| [`realworld_logged_in.png`](./realworld_logged_in.png) | Logged-in state |
-| [`realworld_article_created.png`](./realworld_article_created.png) | Article detail page |
-| [`realworld_profile.png`](./realworld_profile.png) | User profile |
-| [`realworld_login_error.png`](./realworld_login_error.png) | Login error (Bug #5) |
-| [`realworld_failed_update_no_error.png`](./realworld_failed_update_no_error.png) | Silent 422 (Bug #1) |
+All screenshots are embedded as **Section 5: Evidence Screenshots** in `Task1_QA_Report.pdf`.
+
+| Screenshot | Bug | Description |
+|------------|-----|-------------|
+| [`realworld_home.png`](./realworld_home.png) | — | Conduit home page |
+| [`realworld_logged_in.png`](./realworld_logged_in.png) | — | Logged-in state (testuser_qa_2025) |
+| [`realworld_article_created.png`](./realworld_article_created.png) | #1 | Article detail page with Edit/Delete controls |
+| [`realworld_failed_update_no_error.png`](./realworld_failed_update_no_error.png) | #1 | Silent 422 on article update — no styled error shown |
+| [`realworld_weak_password.png`](./realworld_weak_password.png) | #2 | Single-char password `1` accepted on sign-up |
+| [`realworld_invalid_email.png`](./realworld_invalid_email.png) | #3 | `notanemail` (no @) accepted on registration |
+| [`realworld_dup_user_first.png`](./realworld_dup_user_first.png) | #4 | First registration with duplicate username — succeeded |
+| [`realworld_dup_user_second.png`](./realworld_dup_user_second.png) | #4 | Second registration with same username — also succeeded |
+| [`realworld_login_error.png`](./realworld_login_error.png) | #5 | Login error with poor UX styling (plain bullet, no colour) |
+| [`realworld_404_original.png`](./realworld_404_original.png) | #6 | demo.realworld.io returns 404 / NoSuchBucket |
+| [`realworld_comment_programmatic.png`](./realworld_comment_programmatic.png) | #7 | Comment text set programmatically; visible but Angular model empty |
+| [`realworld_comment_no_post.png`](./realworld_comment_no_post.png) | #7 | After clicking Post Comment — no API call fired, comment not posted |
+| [`realworld_profile.png`](./realworld_profile.png) | — | User profile page |
 
 ---
 
@@ -79,11 +87,11 @@
 ### Import Steps
 1. Open n8n at `http://localhost:5678`
 2. Go to **Workflows → Import from File**
-3. Import `Task2_Workflow_AnmolMadhav.json`
+3. Import `Task2_Workflow.json`
 4. Configure **SMTP credentials** in n8n's Credential store
 5. Replace `YOUR/SLACK/WEBHOOK` in Slack nodes with your actual Slack Incoming Webhook URL
 6. Click **Execute Workflow** to test manually
-7. Repeat steps 2–6 for `Bonus_UptimeMonitor_AnmolMadhav.json`
+7. Repeat steps 2–6 for `Bonus_UptimeMonitor.json`
 
 ### Quick API Test (no n8n needed)
 ```bash
